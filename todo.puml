@@ -1,0 +1,39 @@
+@startuml
+    class Todo{
+        + title: string
+        + isCompleted: boolean
+        + id: number
+    }
+    class TodoList{
+        + todoList: Todo[]
+    }
+    class Add{
+        + execute(todo: Todo): void
+    }
+    class Delete{
+        + execute(id: number): void
+    }
+    class ChangeCompleted{
+        + execute(todo: Todo): void
+    }
+    class Show{
+        + All(toDoList: TodoList): void
+        + unCompletedAll(toDoList: TodoList): void
+        + completedAll(toDoList: TodoList): void
+    }
+    class DataManager{
+        + save(todoList: TodoList): void
+        + load(todoList: TodoList): void
+    }
+
+    Todo <|-- Delete
+    Todo <|-- Add
+    Todo <|-- ChangeCompleted
+
+    TodoList <|-- Show
+    TodoList <|-- DataManager
+
+    Delete <|-- TodoList
+    Add <|-- TodoList
+    ChangeCompleted <|-- TodoList
+@enduml
