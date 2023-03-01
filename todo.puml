@@ -1,4 +1,4 @@
-@startuml
+@startuml todo
     class Todo{
         + title: string
         + isCompleted: boolean
