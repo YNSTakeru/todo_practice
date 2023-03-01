@@ -5,16 +5,16 @@
         + id: number
     }
     class TodoList{
-        + todoList: Todo[]
+        + dataArray: Todo[]
     }
     class Add{
-        + execute(todo: Todo): void
+        + execute(todo: Todo, todoList: TodoList): TodoList
     }
     class Delete{
-        + execute(id: number): void
+        + execute(id: number,todoList: TodoList): TodoList
     }
     class ChangeCompleted{
-        + execute(todo: Todo): void
+        + execute(todo: Todo, todoList:TodoList): TodoList
     }
     class Show{
         + All(toDoList: TodoList): void
