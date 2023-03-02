@@ -1,39 +1,41 @@
 @startuml todo
-    class Todo{
-        + title: string
-        + isCompleted: boolean
-        + id: number
-    }
-    class TodoList{
-        + dataArray: Todo[]
-    }
-    class Add{
-        + execute(todo: Todo, todoList: TodoList): TodoList
-    }
-    class Delete{
-        + execute(id: number,todoList: TodoList): TodoList
-    }
-    class ChangeCompleted{
-        + execute(todo: Todo, todoList:TodoList): TodoList
-    }
-    class Show{
-        + All(toDoList: TodoList): void
-        + unCompletedAll(toDoList: TodoList): void
-        + completedAll(toDoList: TodoList): void
-    }
-    class DataManager{
-        + save(todoList: TodoList): void
-        + load(todoList: TodoList): void
-    }
+ class Todo{
+    + title: string
+    + completed: boolean
+    + id: number
+ }
+ class Add{
+    + execute(): TodoList
+ }
+ class Delete{
+    + execute(): TodoList
+ }
+ class ChangeCompleted{
+    + execute(): TodoList
+ }
 
-    Todo <|-- Delete
-    Todo <|-- Add
-    Todo <|-- ChangeCompleted
+ class Show{
+    + all(): void
+    + completed(): void
+    + uncompleted(): void
+ }
 
-    TodoList <|-- Show
-    TodoList <|-- DataManager
+ class DataManager{
+    + save(): void
+    + load(): void
+ }
 
-    Delete <|-- TodoList
-    Add <|-- TodoList
-    ChangeCompleted <|-- TodoList
+ class TodoList{
+    + dataArray: TodoArray
+ }
+
+ Todo <-- Add
+ Todo <-- Delete
+ Todo <-- ChangeCompleted
+
+Add <-- TodoList
+Delete <-- TodoList
+ChangeCompleted <-- TodoList
+Show <-- TodoList
+DataManager <-- TodoList
 @enduml
