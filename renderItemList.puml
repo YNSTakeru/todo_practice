@@ -1,0 +1,52 @@
+@startuml RendderItemList
+interface ItemList{
+    + dataArray: Item[]
+}
+
+class ItemList{
+    + dataArray: Item[]
+}
+
+class Item{
+    + problem: string
+    + answer: string
+    + id: number
+    + complete: boolean
+}
+
+class Card{
+ + item: Item
+ + templateId: string
+  - convertItemToCard(item: Item, templateId: string): HTMLElement
+}
+
+class CardList{
+    + dataArray: Card[]
+}
+
+
+class SubmitEvent{
+    formDataSender: IFormDataSender
+    onClick(form: Form): void
+}
+
+interface ICardListManager{
+    - convertItemToCard(item: Item): Card
+    - convertItemListToCardList(itemList: ItemList): CardList
+    render(itemList: ItemList): void
+}
+
+class CardListManager{
+    - convertItemToCard(item: Item): Card
+    - convertItemListToCardList(itemList: ItemList): CardList
+    render(itemList: ItemList): void
+}
+
+ItemList <- SubmitEvent
+ItemList <|-. ItemList
+SubmitEvent -> ICardListManager
+ICardListManager <|-. CardListManager
+Item <-- CardListManager
+Card <-- CardListManager
+CardList <-- CardListManager
+@enduml

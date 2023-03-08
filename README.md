@@ -19,4 +19,4 @@
 
 ## クラス図
 
-![クラス図](out/todo/todo.svg)
+![クラス図](out/app/app.svg)

@@ -1,0 +1,57 @@
+@startuml SendFormDataToItemList
+class Form{
+    + problem: HTMLTextArea
+    + answer: HTMLTextArea
+    + submit: HTMLInputElement
+}
+
+abstract class Item{
+    + problem: string
+    + answer: string
+    + id: number
+    + complete: boolean
+}
+
+interface ItemFactoryProtocol{
+    create(formObj: FormObj): void
+}
+
+class ConcreteItem extends Item{}
+
+abstract class ItemFactory{
+    create({formObj: FormObj): Item
+
+    {abstract} createItem(formObj: FormObj): Item
+    {abstract} registerItem(item: Item): void
+}
+
+class ConcreteItemFactory extends ItemFactory{
+    createItem(formObj: FormObj): Item
+    registerItem(item: Item): void
+}
+
+
+class SubmitEvent{
+    formDataSender: IFormDataSender
+    onClick(form: Form): void
+}
+
+
+interface IFormDataSender{
+    addItemToItemList(form: Form): void
+}
+
+class FormDataSender{
+    - convertFormDataToItem(form: Form): ItemList
+    addItemToItemList(form: Form): void
+}
+
+Form <-- SubmitEvent
+SubmitEvent -> IFormDataSender
+IFormDataSender <|-. FormDataSender
+ItemFactory -> Item
+ConcreteItemFactory -> ConcreteItem
+FormDataSender -> ItemFactoryProtocol
+ItemFactoryProtocol <|.- ItemFactory
+
+@enduml
