@@ -4,11 +4,12 @@ import "../styles/main.scss";
 import "../styles/vendors/css-reset.css";
 import Form from "./form/form";
 import FormDataSender from "./form/formDataSender";
+import { FormResetter } from "./form/formResetter";
 import ConcreteItemFactory from "./item/itemFactory";
 import CardController from "./render/card/cardController";
 import CardModel from "./render/card/cardModel";
 import CardView from "./render/card/cardView";
-import SubmitEvent from "./submitEvent";
+import SubmitEventController from "./submitEventController";
 (function run() {
   const form = new Form();
 
@@ -23,7 +24,9 @@ import SubmitEvent from "./submitEvent";
   });
   container.register("CardModelProtocol", { useClass: CardModel });
   container.register("CardViewProtocol", { useClass: CardView });
+  container.register("FormResetterProtocol", { useClass: FormResetter });
 
-  const submitEvent = container.resolve(SubmitEvent);
+  const submitEvent = container.resolve(SubmitEventController);
+
   submitEvent.onClick(form);
 })();

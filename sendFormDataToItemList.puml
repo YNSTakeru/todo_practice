@@ -6,7 +6,7 @@ class Form{
 }
 
 abstract class Item{
-    + problem: string
+    + problem: strbing
     + answer: string
     + id: number
     + complete: boolean
@@ -31,7 +31,7 @@ class ConcreteItemFactory extends ItemFactory{
 }
 
 
-class SubmitEvent{
+class SubmitEventController{
     formDataSender: IFormDataSender
     onClick(form: Form): void
 }
@@ -46,8 +46,8 @@ class FormDataSender{
     addItemToItemList(form: Form): void
 }
 
-Form <-- SubmitEvent
-SubmitEvent -> IFormDataSender
+Form <-- SubmitEventController
+SubmitEventController -> IFormDataSender
 IFormDataSender <|-. FormDataSender
 ItemFactory -> Item
 ConcreteItemFactory -> ConcreteItem

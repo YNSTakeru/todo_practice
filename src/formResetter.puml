@@ -1,0 +1,17 @@
+@startuml FormResetter
+class SubmitEventController{
+    formResetter: FormResetterProtocol
+    onClick(form: Form): void
+}
+
+interface FormResetterProtocol{
+    reset(form: HTMLFormElement): void
+}
+
+class FormResetter{
+    reset(form: HTMLFormElement): void
+}
+
+SubmitEventController -> FormResetterProtocol
+FormResetterProtocol <|--. FormResetter
+@enduml

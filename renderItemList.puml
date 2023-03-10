@@ -1,7 +1,7 @@
 @startuml RendderItemList
 
 
-class SubmitEvent{
+class SubmitEventController{
     cardControllerProtocol: CardControllerProtocol
     onClick(form: Form): void
 }
@@ -41,7 +41,7 @@ class CardView{
     render(cardModel: CardModel): void
 }
 
-SubmitEvent -> CardControllerProtocol
+SubmitEventController -> CardControllerProtocol
 CardControllerProtocol <|-. CardController
 CardController -> CardModelProtocol
 CardModelProtocol <|--. CardModel

@@ -1,7 +1,8 @@
 export interface FormResetterProtocol {
-  reset(): void;
+  reset(form: HTMLFormElement): void;
 }
-
 export class FormResetter implements FormResetterProtocol {
-  reset(): void {}
+  reset(form: HTMLFormElement): void {
+    form.reset();
+  }
 }

@@ -19,4 +19,14 @@
 
 ## クラス図
 
-![クラス図](out/app/app.svg)
+### フォームデータを送信して itemList に item インスタンスを追加する処理
+
+![フォームデータを送信してitemListにitemインスタンスを追加する処理](out/sendFormDataToItemList/SendFormDataToItemList.svg)
+
+### item を Card インスタンスにに変換して画面に描画する処理
+
+![item を card インスタンスにに変換して画面に描画する処理](out/renderItemList/RendderItemList.svg)
+
+## form に入力された値を初期化する処理
+
+![form に入力された値を初期化する処理](out/src/formResetter/FormResetter.svg)
