@@ -1,52 +1,51 @@
 @startuml RendderItemList
-interface ItemList{
-    + dataArray: Item[]
-}
-
-class ItemList{
-    + dataArray: Item[]
-}
-
-class Item{
-    + problem: string
-    + answer: string
-    + id: number
-    + complete: boolean
-}
-
-class Card{
- + item: Item
- + templateId: string
-  - convertItemToCard(item: Item, templateId: string): HTMLElement
-}
-
-class CardList{
-    + dataArray: Card[]
-}
 
 
 class SubmitEvent{
-    formDataSender: IFormDataSender
+    cardControllerProtocol: CardControllerProtocol
     onClick(form: Form): void
 }
 
-interface ICardListManager{
-    - convertItemToCard(item: Item): Card
-    - convertItemListToCardList(itemList: ItemList): CardList
-    render(itemList: ItemList): void
+
+interface CardControllerProtocol{
+    render(): void
 }
 
-class CardListManager{
-    - convertItemToCard(item: Item): Card
-    - convertItemListToCardList(itemList: ItemList): CardList
-    render(itemList: ItemList): void
+class CardController{
+    concreteItemFactoryProtocol: ConcreteItemFactoryProtocol
+    - create(): CardModel
+    render(): void
 }
 
-ItemList <- SubmitEvent
-ItemList <|-. ItemList
-SubmitEvent -> ICardListManager
-ICardListManager <|-. CardListManager
-Item <-- CardListManager
-Card <-- CardListManager
-CardList <-- CardListManager
+interface CardModelProtocol{
+      convertItemToCard({problem, answer, id: complete}: Item, templateId: string): HTMLElement
+}
+
+class CardModel{
+     item: Item
+     templateId: string
+
+    - getCardDom(templateId: string): HTMLElement
+    - setCardConfig({problem,answer,id,complete}: Item): void
+    - setCardContent({problem, answer}: Item): void
+    - setCardId(id: string): void
+    - validateCheck(complete: boolean): void
+    convertItemToCard({problem, answer, id: complete}: Item, templateId: string): HTMLElement
+}
+
+interface CardViewProtocol{
+    render(cardModel: CardModel): void
+}
+
+class CardView{
+    render(cardModel: CardModel): void
+}
+
+SubmitEvent -> CardControllerProtocol
+CardControllerProtocol <|-. CardController
+CardController -> CardModelProtocol
+CardModelProtocol <|--. CardModel
+CardViewProtocol <- CardController
+CardViewProtocol <|--. CardView
+
 @enduml

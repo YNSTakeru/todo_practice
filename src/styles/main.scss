@@ -17,9 +17,11 @@
 
   &__container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    justify-items: center;
+    align-items: center;
     margin-bottom: $sectionBottom;
+    gap: 20px;
   }
 
   &__icon {
@@ -33,6 +35,10 @@
       & svg {
         stroke: $completedColor;
         stroke-width: 3px;
+      }
+
+      &.hidden {
+        visibility: hidden;
       }
     }
   }
@@ -133,9 +139,13 @@ form {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   padding: 20px 20px;
+}
+
+.end__section {
+  padding: $sectionBottom 20px;
 }

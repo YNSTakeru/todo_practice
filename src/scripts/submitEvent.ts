@@ -2,24 +2,22 @@ import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 import Form from "./form/form";
 import { IFormDataSender } from "./form/formDataSender";
-import { ICardListManager } from "./render/cardListManager";
+import { CardControllerProtocol } from "./render/card/cardController";
 
 @injectable()
 export default class SubmitEvent {
   constructor(
     @inject("IFormDataSender") private formDataSender: IFormDataSender,
-    @inject("ICardListManager") private cardListManager: ICardListManager
+    @inject("CardControllerProtocol")
+    private cardController: CardControllerProtocol
   ) {}
 
   onClick(form: Form): void {
     const { Dom } = form;
     Dom.submit.addEventListener("click", (event) => {
       event.preventDefault();
-      // このメソッドのitemListと
       this.formDataSender.addItemToItemList(form);
-
-      // このメソッドのitemListを一致させたい
-      this.cardListManager.render();
+      this.cardController.render();
     });
   }
 }

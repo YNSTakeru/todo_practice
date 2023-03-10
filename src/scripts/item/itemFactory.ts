@@ -12,6 +12,7 @@ export interface ItemFactoryProtocol {
 
 export interface ConcreteItemFactoryProtocol {
   getItemList(): Item[];
+  getLatestItem(): Item;
 }
 
 export abstract class ItemFactory implements ItemFactoryProtocol {
@@ -45,5 +46,9 @@ export default class ConcreteItemFactory
   }
   getItemList() {
     return itemList;
+  }
+
+  getLatestItem() {
+    return itemList[itemList.length - 1];
   }
 }
