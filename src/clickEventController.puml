@@ -1,0 +1,46 @@
+@startuml clickEventController
+class CardController{
+    clickEventControllerProtocol:  ClickEventControllerProtocol
+}
+interface ClickEventControllerProtocol{
+    onClick(): void
+}
+
+interface CardDetailModelProtocol {
+    create(): HTMLElement
+}
+
+class CardDetailModel{
+    create(): HTMLElement
+}
+
+class ClickEventController{
+    cardDetailViewProtocol: CardDetailViewProtocol
+    onClick(): void
+}
+
+interface CardDetailViewProtocol{
+    render()
+}
+class CardDetailView{
+    render()
+}
+
+interface CardDetailControllerProtocol{
+    render(): void
+}
+class CardDetailController{
+    render(): void
+}
+
+CardController -> ClickEventControllerProtocol
+
+ClickEventControllerProtocol <|-. ClickEventController
+ClickEventController -> CardDetailControllerProtocol
+CardDetailControllerProtocol <|-. CardDetailController
+CardDetailController -> CardDetailViewProtocol
+CardDetailViewProtocol <|-. CardDetailView
+CardDetailModelProtocol <- CardDetailController
+CardDetailModelProtocol <|-. CardDetailModel
+
+@enduml
