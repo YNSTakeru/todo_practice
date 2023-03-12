@@ -8,7 +8,9 @@ import { FormResetter } from "./form/formResetter";
 import ConcreteItemFactory from "./item/itemFactory";
 import CardController from "./render/card/cardController";
 import CardDetailController from "./render/card/cardDetail/cardDetailController";
+import CardDetailEventController from "./render/card/cardDetail/cardDetailEventController";
 import CardDetailModel from "./render/card/cardDetail/cardDetailModel";
+import CardDetailSwipeEventController from "./render/card/cardDetail/cardDetailSwipeEventController";
 import CardDetailView from "./render/card/cardDetail/cardDetailView";
 import ClickEventController from "./render/card/cardDetail/clickEventController";
 import CardModel from "./render/card/cardModel";
@@ -42,7 +44,24 @@ import SubmitEventController from "./submitEventController";
     useClass: CardDetailView,
   });
 
+  container.register("CardDetailEventControllerProtocol", {
+    useClass: CardDetailEventController,
+  });
+
+  container.register("CardDetailSwipeEventControllerProtocol", {
+    useClass: CardDetailSwipeEventController,
+  });
+
   const submitEvent = container.resolve(SubmitEventController);
   const form = new Form();
   submitEvent.onClick(form);
+
+  const cardDetailEventController = container.resolve(
+    CardDetailEventController
+  );
+  const cardDetail = document.querySelector(
+    ".card__detail__container"
+  ) as HTMLElement;
+
+  cardDetailEventController.setEvent(cardDetail);
 })();

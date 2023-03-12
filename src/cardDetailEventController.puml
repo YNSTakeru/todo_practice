@@ -1,0 +1,17 @@
+@startuml CardDetailEventController
+
+class CardDetailEventController{}
+interface CardDetailSwipeEventControllerProtocol{}
+class CardDetailSwipeEventController{}
+
+interface CardDetailViewProtocol{
+    back(): void
+}
+class CardDetailView{
+    back(): void
+}
+CardDetailEventController -> CardDetailSwipeEventControllerProtocol
+CardDetailSwipeEventControllerProtocol <|-. CardDetailSwipeEventController
+CardDetailSwipeEventController -> CardDetailViewProtocol
+CardDetailViewProtocol <|-. CardDetailView
+@enduml

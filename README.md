@@ -30,3 +30,11 @@
 ## form に入力された値を初期化する処理
 
 ![form に入力された値を初期化する処理](out/src/formResetter/FormResetter.svg)
+
+## card をクリックすると cardDetail が表示される処理
+
+![card をクリックすると cardDetail が表示される処理](out/src/clickEventController/clickEventController.svg)
+
+## cardDetail で左スワイプすると cardDetail が閉じる処理
+
+![cardDetail で左スワイプすると cardDetail が閉じる処理](out/src/cardDetailEventController/CardDetailEventController.svg)
